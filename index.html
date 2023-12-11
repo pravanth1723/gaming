@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Game</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: cursive;
+        background: #8b008b;
+        background-attachment: fixed;
+        /* overflow: hidden; */
+    }
+
+    .box h1 {
+        width: 100vw;
+        /* padding: 5px; */
+        /* background-position:  */
+        background: rgb(0, 0, 0);
+        color: white;
+        text-align: center;
+        border-radius: 100px;
+    }
+
+    .maincontainer {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+
+    }
+
+    .nofplayers h2 {
+        /* margin-left: 5%; */
+        width: 300px;
+        padding: 5px 25px;
+        background: rgb(0, 0, 0);
+        color: white;
+        text-align: center;
+        border-radius: 30px;
+    }
+
+    /* .dicecontainer{
+        position:fixed;
+        /* display: flex; 
+    } */
+    .dice {
+
+        display: flex;
+        background-color: black;
+        width: 180px;
+        height: 180px;
+        position: relative;
+        margin-top: 30px;
+        margin-right: 30px;
+        right: -60%;
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 0, 0);
+    }
+
+
+    .dicedot {
+
+        --top: 50%;
+        --left: 50%;
+        width: 25px;
+        height: 25px;
+        background-color: white;
+        border-radius: 50%;
+        /* left:30%; */
+
+        /* dot positioning */
+
+        position: absolute;
+        top: var(--top);
+        left: var(--left);
+        transform: translateX(calc(var(--left)*-1)) translateY(calc(var(--top)*-1));
+
+    }
+
+    .dicebtn {
+        padding: 10px 50px;
+        font-family: cursive;
+        background: black;
+        border: 3px solid white;
+        border-radius: 13px;
+        font-size: larger;
+        color: white;
+        position: relative;
+        margin-top: 30px;
+        right: -60%;
+    }
+
+    .dicebtn:hover {
+        cursor: pointer;
+    }
+
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    .numbers label {
+        position: relative;
+        background: black;
+        color: white;
+        font: larger;
+        padding: 14px 14px;
+        border-radius: 2px;
+        top: 20px;
+        /* left: 9%; */
+        margin: 35px;
+        border: solid 3px white;
+
+    }
+
+
+    input[type="radio"]:checked+label {
+        background: white;
+        color: black;
+        border: 3px solid black;
+    }
+
+    #p3,
+    #p4 {
+        display: none;
+    }
+
+    .playerslist {
+        position: absolute;
+        margin-top: 30px;
+        display: flex;
+        /* flex-direction: column; */
+    }
+
+    .playerslist label {
+        margin-left: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .player,
+    .playermenu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #pl1,
+    #pl2,
+    #pl3,
+    #pl4,
+    #p {
+        /* width: 300px; */
+        margin-right: 10px;
+        padding: 5px 25px;
+        background: rgb(0, 0, 0);
+        color: white;
+        text-align: center;
+        border-radius: 10px;
+        border: solid 2px white;
+    }
+
+    .player input[type='text'] {
+        width: 150px;
+        height: 30px;
+        border: 3px solid black;
+        margin: 5px;
+        /* padding: 1px 3px; */
+        font-size: larger;
+        text-align: center;
+        color: black;
+
+    }
+
+    .player input[type='button'] {
+        padding: 5px 5px;
+        background: rgb(0, 0, 0);
+        width: 100px;
+        margin-left: 35px;
+        color: white;
+        /* text-align: center; */
+        border-radius: 10px;
+        border: solid 2px white;
+    }
+
+
+    #tc,
+    #ch,
+    #b {
+        margin: 7px;
+        background: grey;
+        border: 3px white solid;
+        padding: 3px;
+        border-radius: 5px;
+    }
+
+    #printbox {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        border: 2px solid black;
+        background: white;
+        height: 50px;
+    }
+
+    @media only screen and (max-width: 500px) {
+
+        /* body {
+            background-color: lightblue;
+        } */
+        .box h1 {
+            width: 100vw;
+            padding-top:2px ;
+            padding-bottom: 2px;
+            font-size: x-large;
+        }
+
+        .maincontainer {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nofplayers h2 {
+            width: 100vw;
+            margin-left: 0px;
+            padding: 2px 0px;
+        }
+
+        #printbox {
+            display: none;
+        }
+
+        .playerslist {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .playerslist .player {
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+
+
+
+         .container{
+        position:relative;
+         display: flex; 
+         flex-direction: column;
+         align-items: center;
+        justify-content: center;
+    } 
+        .dice {
+
+            display: block;
+            margin-right: 0px;
+            right: -50%;
+        }
+
+        .dicebtn {   
+            right: -50%;
+        }
+        .playerslist label {
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+        #pl1,#pl2,#pl3,#pl4,#p
+    {
+        width: 50vw;
+        /* margin-right: 0px; */
+        align-self: center;
+        padding: 5px 25px;
+        background: rgb(0, 0, 0);
+        color: white;
+        text-align: center;
+        border-radius: 10px;
+        border: solid 2px white;
+    }
+    .playermenu{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #tc,
+    #ch,
+    #b {
+        /* margin: 0px; */
+        width: 40vw;
+        background: grey;
+        border: 3px white solid;
+        padding: 3px;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .numbers {
+        display: flex;
+        top: 0px;
+        margin-top: 0px;
+        align-items: center;
+        justify-content: center;
+    }
+    .numbers label{
+        margin: 20px;
+        margin-top: 0px;
+    }
+    }
+</style>
+
+<body>
+
+    <div class="box">
+        <h1>
+            Welcome To Dice Game
+        </h1>
+    </div>
+
+
+
+    <!--     Gaming     -->
+    <div class="maincontainer">
+
+
+        <div class="nofplayers">
+            <h2>Select No.Of Players</h2>
+            <div class="numbers">
+                <input type="radio" name="players_radio" id="radio1">
+                <label for="radio1">2</label>
+
+                <input type="radio" name="players_radio" id="radio2">
+                <label for="radio2">3</label>
+
+                <input type="radio" name="players_radio" id="radio3">
+                <label for="radio3">4</label>
+            </div>
+            <div class="playerslist" id="p1">
+                <div class="playermenu">
+                    <label for="" id="p">Players</label>
+                    <label for="" id="tc">Total Coins</label>
+                    <label for="" id="ch">Choice</label>
+                    <label for="" id="b">Bet</label>
+
+
+                </div>
+                <div class="player">
+                    <label for="" id="pl1">Player1</label>
+                    <input type="text" value="5000" id="coins1" readonly>
+                    <input type="text" placeholder="1-6" id="choice1">
+                    <input type="text" placeholder="100-1000" id="betcoins1">
+                    <!-- <input type="button" value="done"> -->
+                </div>
+                <div class="player" id="p2">
+                    <label for="" id="pl2">Player2</label>
+                    <input type="text" value="5000" id="coins2" readonly>
+                    <input type="text" placeholder="1-6" id="choice2">
+                    <input type="text" placeholder="100-1000" id="betcoins2">
+                    <!-- <input type="button" value="done"> -->
+                </div>
+                <div class="player" id="p3">
+                    <label for="" id="pl3">Player3</label>
+                    <input type="text" value="5000" id="coins3" readonly>
+                    <input type="text" placeholder="1-6" id="choice3">
+                    <input type="text" placeholder="100-1000" id="betcoins3">
+                    <!-- <input type="button" value="done"> -->
+                </div>
+                <div class="player" id="p4">
+                    <label for="" id="pl4">Player4</label>
+                    <input type="text" value="5000" id="coins4" readonly>
+                    <input type="text" placeholder="1-6" id="choice4">
+                    <input type="text" placeholder="100-1000" id="betcoins4">
+                    <!-- <input type="button" value="done"> -->
+                </div>
+
+            </div>
+        </div>
+
+        <!--         Dice        -->
+        <div class="container">
+
+            <div class="dicecontainer">
+                <div class="dice">
+                    <div class="dicedot">
+
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="dicebtn" id="btn">Roll Dice</button>
+        </div>
+    </div>
+
+    <div class="last">
+        <input type="text" id="printbox">
+    </div>
+</body>
+
+
+
+<script>
+    function createDice(number) {
+        const dotPositionMatrix = {
+            1: [
+                [50, 50]
+            ],
+            2: [
+                [20, 20],
+                [80, 80]
+            ],
+            3: [
+                [20, 20],
+                [50, 50],
+                [80, 80]
+            ],
+            4: [
+                [20, 20],
+                [20, 80],
+                [80, 20],
+                [80, 80]
+            ],
+            5: [
+                [20, 20],
+                [20, 80],
+                [50, 50],
+                [80, 20],
+                [80, 80]
+            ],
+            6: [
+                [20, 20],
+                [20, 80],
+                [50, 20],
+                [50, 80],
+                [80, 20],
+                [80, 80]
+            ]
+        };
+
+        const dice = document.createElement("div");
+
+        dice.classList.add("dice");
+
+        for (const dotPosition of dotPositionMatrix[number]) {
+            const dot = document.createElement("div");
+            dot.classList.add('dicedot');
+            dot.style.setProperty("--top", dotPosition[0] + '%');
+            dot.style.setProperty("--left", dotPosition[1] + '%');
+
+            dice.appendChild(dot);
+        }
+        return dice;
+    }
+
+    var no = 2;
+
+    setInterval(function () {
+        if (document.getElementById("radio1").checked) {
+            document.getElementById("radio1").checked = false;
+            document.getElementById('p3').style.display = 'none';
+            document.getElementById('p4').style.display = 'none';
+            no = 2
+        }
+        else if (document.getElementById("radio2").checked) {
+            document.getElementById("radio2").checked = false;
+            document.getElementById('p3').style.display = 'flex';
+            document.getElementById('p4').style.display = 'none'; no = 3;
+        }
+        else if (document.getElementById("radio3").checked) {
+            document.getElementById("radio3").checked = false;
+            document.getElementById('p3').style.display = 'flex';
+            document.getElementById('p4').style.display = 'flex';
+            no = 4;
+        }
+
+
+
+    }, 100);
+
+
+    const diceContainer = document.querySelector('.dicecontainer');
+    const btnrolldice = document.querySelector('.dicebtn');
+    function checkvalues() {
+        for (var i = 1; i <= no; i++) {
+            // var coins=document.getElementById('coins'+i).value;
+            var choice = document.getElementById('choice' + i).value;
+            var betcoins = document.getElementById('betcoins' + i).value;
+            document.getElementById('choice' + i).style.border = '3px black solid';
+            document.getElementById('betcoins' + i).style.border = '3px black solid';
+            if (choice == '' || betcoins == '') {
+
+                // document.getElementById('choice'+i).style.opacity='0.3';
+                document.getElementById('printbox').value = '';
+                document.getElementById('printbox').value = 'Please enter all details';
+                if (choice == '')
+                {
+
+                    document.getElementById('choice' + i).style.border = '3px red solid';
+                    // document.getElementById()
+                }
+                else
+                    document.getElementById('betcoins' + i).style.border = '3px red solid';
+                return false;
+
+            }
+            if (choice < 1 || betcoins > 1000 || choice > 6 || betcoins < 100) {
+                document.getElementById('printbox').value = '';
+                document.getElementById('printbox').value = 'Please enter valid details';
+                if (choice < 1 || choice > 6)
+                    document.getElementById('choice' + i).style.border = '3px red solid';
+                else
+                    document.getElementById('betcoins' + i).style.border = '3px red solid';
+
+                return false;
+            }
+            if (parseInt(betcoins) > parseInt(document.getElementById('coins' + i).value)) {
+                document.getElementById('betcoins' + i).style.border = '3px red solid';
+                return false;
+            }
+        }
+        return true;
+    }
+    var eliminated = Array(4);
+    for (var i = 0; i < 4; i++) {
+        eliminated[i] = false;
+    }
+
+
+    function checkwinner() {
+
+        var eliminatedpeople = 0;
+        for (var i = 1; i <= no; i++) {
+            if (parseInt(document.getElementById('coins' + i).value) <= 100) {
+                eliminatedpeople += 1;
+            }
+        }
+        if (eliminatedpeople == no || eliminatedpeople == no - 1) {
+            var win = parseInt(document.getElementById('coins1').value), index = 1;
+            for (var i = 1; i <= no; i++) {
+                if (win < parseInt(document.getElementById('coins' + i).value)) {
+                    win = parseInt(document.getElementById('coins' + i).value);
+                    index = i;
+                }
+            }
+            document.getElementById('pl' + index).style.border = '3px solid green';
+
+            let confirmAction = confirm("Player " + index + " won the game ");
+            if (confirmAction) {
+                location.reload();
+            }
+
+        }
+
+    }
+
+
+
+    function play() {
+        if (checkvalues()) {
+            document.getElementById('radio1').disabled = true;
+            document.getElementById('radio2').disabled = true;
+            document.getElementById('radio3').disabled = true;
+
+            document.getElementById('printbox').value = '';
+            diceContainer.innerHTML = '';
+            var numberrr = (Math.floor(Math.random() * 6) + 1);
+            diceContainer.appendChild(createDice(numberrr));
+            for (var i = 1; i <= no; i++) {
+                if (!eliminated[i - 1]) {
+
+
+                    var coins = parseInt(document.getElementById('coins' + i).value);
+                    var choice = parseInt(document.getElementById('choice' + i).value);
+                    var betcoins = parseInt(document.getElementById('betcoins' + i).value);
+                    if (numberrr == choice) {
+                        coins += betcoins;
+                    }
+                    else {
+                        coins -= betcoins;
+                    }
+                    if (coins <= 100) {
+                        eliminated[i - 1] = true;
+                        // checkwinner();
+                        document.getElementById('pl' + i).style.opacity = '0.4';
+                        document.getElementById('coins' + i).style.opacity = '0.4';
+                        document.getElementById('choice' + i).style.opacity = '0.4';
+                        document.getElementById('betcoins' + i).style.opacity = '0.4';
+                        document.getElementById('choice' + i).setAttribute('readonly', true);
+                        document.getElementById('betcoins' + i).setAttribute('readonly', true);
+                        document.getElementById('printbox').value = '';
+                        document.getElementById('printbox').value = 'Player   ' + i + "   Eliminated";
+
+                    }
+                    document.getElementById('coins' + i).value = coins;
+                    document.getElementById('choice' + i).value = '';
+                    document.getElementById('betcoins' + i).value = '';
+                }
+                else {
+                    continue;
+                }
+            }
+            checkwinner();
+        }
+
+    }
+    document.getElementById('btn').addEventListener('click', play, false);
+
+
+</script>
+
+</html>
